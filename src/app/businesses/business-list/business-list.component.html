@@ -1,1 +1,29 @@
-<app-business-item></app-business-item>
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success">New Business</button>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-xs-12">
+    <a
+      href="#"
+      class="list-group-item clearfix"
+      *ngFor="let business of businesses"
+    >
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ business.name }}</h4>
+        <p class="list-group-item-text">{{ business.description }}</p>
+      </div>
+      <span class="pull-right">
+        <img
+          [src]="business.imagePath"
+          alt="{{ business.name }}"
+          class="img-responsive"
+          style="max-height: 50px"
+        />
+      </span>
+    </a>
+    <app-business-item></app-business-item>
+  </div>
+</div>
