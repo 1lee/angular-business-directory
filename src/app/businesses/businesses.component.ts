@@ -8,12 +8,16 @@ import { BusinessService } from './business.service';
   styleUrls: ['./businesses.component.css'],
   providers: [BusinessService]
 })
-  
+
 export class BusinessesComponent implements OnInit {
   selectedBusiness: Business;
-  constructor() { }
+
+  constructor(private businessService: BusinessService) { }
 
   ngOnInit(): void {
+    this.businessService.businessSelected.subscribe((business: Business) => {
+      this.selectedBusiness = business
+    })
   }
 
 }

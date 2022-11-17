@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Business } from '../business.model';
 import { BusinessService } from '../business.service';
 
@@ -8,7 +8,6 @@ import { BusinessService } from '../business.service';
   styleUrls: ['./business-list.component.css']
 })
 export class BusinessListComponent implements OnInit {
-  @Output() businessWasSelected = new EventEmitter<Business>()
   businesses: Business[];
 
   constructor(private businessService: BusinessService) { }
@@ -17,8 +16,5 @@ export class BusinessListComponent implements OnInit {
     this.businesses = this.businessService.getBusinesses();
   }
 
-  onBusinessSelected(business: Business) {
-    this.businessWasSelected.emit(business)
-  }
 
 }
