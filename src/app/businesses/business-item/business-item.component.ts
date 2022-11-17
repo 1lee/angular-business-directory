@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Business } from '../business.model';
 
 @Component({
   selector: 'app-business-item',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./business-item.component.css']
 })
 export class BusinessItemComponent implements OnInit {
+  @Input() business: Business;
+  @Output() businessSelected = new EventEmitter<void>()
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSelected() {
+    this.businessSelected.emit()
+  }
 }
