@@ -11,6 +11,9 @@ import { BusinessItemComponent } from './businesses/business-item/business-item.
 import { LinkListComponent } from './link-list/link-list.component';
 import { LinkEditComponent } from './link-list/link-edit/link-edit.component';
 import { BusinessDetailComponent } from './businesses/business-detail/business-detail.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { BusinessDetailComponent } from './businesses/business-detail/business-d
     BusinessItemComponent,
     LinkListComponent,
     LinkEditComponent,
-    BusinessDetailComponent
+    BusinessDetailComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

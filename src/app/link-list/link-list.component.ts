@@ -17,4 +17,8 @@ export class LinkListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onLinkAdded(link: Link) {
+    this.links.push(link);
+  }
+
 }
