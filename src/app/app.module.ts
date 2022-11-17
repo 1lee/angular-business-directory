@@ -12,6 +12,7 @@ import { LinkListComponent } from './link-list/link-list.component';
 import { LinkEditComponent } from './link-list/link-edit/link-edit.component';
 import { BusinessDetailComponent } from './businesses/business-detail/business-detail.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { LinkListService } from './link-list/link-list.service';
 
 
 
@@ -31,7 +32,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
     BrowserModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [LinkListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

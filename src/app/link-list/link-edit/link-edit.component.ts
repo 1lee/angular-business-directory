@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild, Output } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+import { LinkListService } from '../link-list.service';
 import { Link } from '../../shared/link.model'
 
 @Component({
@@ -11,17 +12,17 @@ export class LinkEditComponent implements OnInit {
   @ViewChild('nameInput') nameInputRef: ElementRef;
   @ViewChild('urlInput') urlInputRef: ElementRef;
 
-  @Output() linkAdded = new EventEmitter<Link>();
 
-  constructor() { }
+  constructor(private linkListService: LinkListService) { }
 
   ngOnInit(): void {
   }
 
   onAddItem() {
     const newLink = new Link(this.nameInputRef.nativeElement.value, this.urlInputRef.nativeElement.value)
-    console.log(`newLink: `, newLink)
-    this.linkAdded.emit(newLink);
+    console.log(`newLink??? `, newLink)
+    this.linkListService.addLink(newLink);
+
   }
 
 }

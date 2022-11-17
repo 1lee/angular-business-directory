@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from '../shared/link.model';
+import { LinkListService } from './link-list.service';
+
 
 @Component({
   selector: 'app-link-list',
@@ -7,18 +9,19 @@ import { Link } from '../shared/link.model';
   styleUrls: ['./link-list.component.css']
 })
 export class LinkListComponent implements OnInit {
-  links: Link[] = [
-    new Link('Google search', 'http://www.google.com'),
-    new Link('Amazon', 'http://www.amazon.com')
-  ];
+  links: Link[];
 
-  constructor() { }
+  constructor(private linkListService: LinkListService) {
 
-  ngOnInit(): void {
   }
 
-  onLinkAdded(link: Link) {
-    this.links.push(link);
+  ngOnInit(): void {
+    // initial setting at component creation
+    this.links = this.linkListService.getLinks();
+    // keep up to date with source of truth in service
+    this.linkListService.linksChanged.subscribe((links: Link[]) => {
+      this.links = links;
+    })
   }
 
 }
