@@ -14,6 +14,12 @@ export class LinkListService {
     this.linksChanged.emit(this.links.slice())
   }
 
+  addLinks(links: Link[]) {
+    this.links.push(...links)
+    this.linksChanged.emit(this.links.slice())
+
+  }
+
   getLinks() {
     return this.links.slice()
   }

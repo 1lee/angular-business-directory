@@ -1,7 +1,10 @@
-import { EventEmitter } from '@angular/core'
+import { EventEmitter, Injectable } from '@angular/core'
+import { LinkListService } from '../link-list/link-list.service';
 import { Link } from '../shared/link.model';
 import { Business } from './business.model'
 
+
+@Injectable()
 export class BusinessService {
   businessSelected = new EventEmitter<Business>()
 
@@ -16,9 +19,14 @@ export class BusinessService {
 
   ];
 
+  constructor(private linklistService: LinkListService) { }
+
   getBusinesses() {
     // use slice to return a new copy of array instead of referencing
     return this.businesses.slice()
   }
 
+  addLinksToLinkList(links: Link[]) {
+    this.linklistService.addLinks(links);
+  }
 }
