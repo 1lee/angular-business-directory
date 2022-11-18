@@ -31,5 +31,11 @@
   <div class="col-xs-12">{{ business.description }}</div>
 </div>
 <div class="row">
-  <div class="col-xs-12">Links</div>
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let link of business.links">
+        {{ link.name }} | {{ link.url }}
+      </li>
+    </ul>
+  </div>
 </div>
