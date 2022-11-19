@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Business } from '../business.model';
 import { BusinessService } from '../business.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-business-list',
@@ -10,11 +11,13 @@ import { BusinessService } from '../business.service';
 export class BusinessListComponent implements OnInit {
   businesses: Business[];
 
-  constructor(private businessService: BusinessService) { }
+  constructor(private businessService: BusinessService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.businesses = this.businessService.getBusinesses();
   }
 
-
+  onNewBusiness() {
+    this.router.navigate(['new'], { relativeTo: this.route })
+  }
 }

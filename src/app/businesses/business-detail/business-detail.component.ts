@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Business } from '../business.model';
 import { BusinessService } from '../business.service';
 
@@ -12,7 +12,7 @@ export class BusinessDetailComponent implements OnInit {
   business: Business;
   id: number;
 
-  constructor(private businessService: BusinessService, private route: ActivatedRoute) { }
+  constructor(private businessService: BusinessService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -23,5 +23,9 @@ export class BusinessDetailComponent implements OnInit {
 
   onAddToLinkList() {
     this.businessService.addLinksToLinkList(this.business.links)
+  }
+
+  onEditBusiness() {
+    this.router.navigate(['edit'], { relativeTo: this.route })
   }
 }
