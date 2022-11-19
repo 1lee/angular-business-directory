@@ -3,5 +3,6 @@
         "editor.selectionHighlightBorder": "#eeff00aa",
         "terminal.foreground": "#00b445",
         "terminal.background": "#181818"
-    }
+    },
+    "angular.enable-strict-mode-prompt": false
 }

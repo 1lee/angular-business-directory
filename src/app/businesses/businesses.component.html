@@ -3,10 +3,7 @@
     <app-business-list></app-business-list>
   </div>
   <div class="col-md-7">
-    <app-business-detail
-      *ngIf="selectedBusiness; else infoText"
-      [business]="selectedBusiness"
-    ></app-business-detail>
+    <router-outlet></router-outlet>
     <ng-template #infoText>
       <p>Please select a business...</p>
     </ng-template>

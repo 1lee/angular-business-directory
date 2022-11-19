@@ -21,6 +21,10 @@ export class BusinessService {
 
   constructor(private linklistService: LinkListService) { }
 
+  getBusiness(index: number) {
+    return this.businesses[index];
+  }
+
   getBusinesses() {
     // use slice to return a new copy of array instead of referencing
     return this.businesses.slice()

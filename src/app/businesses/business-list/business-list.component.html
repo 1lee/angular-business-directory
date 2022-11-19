@@ -7,8 +7,9 @@
 <div class="row">
   <div class="col-xs-12">
     <app-business-item
-      *ngFor="let businessEl of businesses"
+      *ngFor="let businessEl of businesses; let i = index"
       [business]="businessEl"
+      [index]="i"
     ></app-business-item>
   </div>
 </div>

@@ -14,6 +14,7 @@ import { BusinessDetailComponent } from './businesses/business-detail/business-d
 import { DropdownDirective } from './shared/dropdown.directive';
 import { LinkListService } from './link-list/link-list.service';
 import { AppRoutingModule } from './app-routing.module';
+import { BusinessStartComponent } from './businesses/business-start/business-start.component';
 
 
 
@@ -27,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
     LinkListComponent,
     LinkEditComponent,
     BusinessDetailComponent,
-    DropdownDirective
+    DropdownDirective,
+    BusinessStartComponent
   ],
   imports: [
     BrowserModule,
