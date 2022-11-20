@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Link } from '../shared/link.model';
 import { LinkListService } from './link-list.service';
 
@@ -10,6 +11,8 @@ import { LinkListService } from './link-list.service';
 })
 export class LinkListComponent implements OnInit {
   links: Link[];
+  private linksChangedSub: Subscription;
+
 
   constructor(private linkListService: LinkListService) {
 
@@ -19,9 +22,13 @@ export class LinkListComponent implements OnInit {
     // initial setting at component creation
     this.links = this.linkListService.getLinks();
     // keep up to date with source of truth in service
-    this.linkListService.linksChanged.subscribe((links: Link[]) => {
+    this.linksChangedSub = this.linkListService.linksChanged.subscribe((links: Link[]) => {
       this.links = links;
     })
+  }
+
+  ngOnDestroy(): void {
+    this.linksChangedSub.unsubscribe();
   }
 
 }

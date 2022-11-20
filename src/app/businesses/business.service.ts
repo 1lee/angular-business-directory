@@ -1,12 +1,12 @@
-import { EventEmitter, Injectable } from '@angular/core'
+import { Injectable } from '@angular/core'
 import { LinkListService } from '../link-list/link-list.service';
 import { Link } from '../shared/link.model';
 import { Business } from './business.model'
 
 
+
 @Injectable()
 export class BusinessService {
-  businessSelected = new EventEmitter<Business>()
 
   private businesses: Business[] = [
     new Business('A Test Business',

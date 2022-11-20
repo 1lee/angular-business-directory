@@ -1,8 +1,10 @@
-import { EventEmitter } from '@angular/core';
-import { Link } from '../shared/link.model'
+import { Subject } from 'rxjs';
+
+import { Link } from '../shared/link.model';
+
 
 export class LinkListService {
-  linksChanged = new EventEmitter<Link[]>();
+  linksChanged = new Subject<Link[]>();
 
   private links: Link[] = [
     new Link('Google search', 'http://www.google.com'),
@@ -11,12 +13,12 @@ export class LinkListService {
 
   addLink(link: Link) {
     this.links.push(link)
-    this.linksChanged.emit(this.links.slice())
+    this.linksChanged.next(this.links.slice())
   }
 
   addLinks(links: Link[]) {
     this.links.push(...links)
-    this.linksChanged.emit(this.links.slice())
+    this.linksChanged.next(this.links.slice())
 
   }
 
