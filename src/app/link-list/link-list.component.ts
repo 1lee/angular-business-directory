@@ -27,6 +27,10 @@ export class LinkListComponent implements OnInit {
     })
   }
 
+  onEditItem(index: number) {
+    this.linkListService.startedEditing.next(index);
+  }
+
   ngOnDestroy(): void {
     this.linksChangedSub.unsubscribe();
   }
