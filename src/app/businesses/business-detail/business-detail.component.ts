@@ -28,4 +28,9 @@ export class BusinessDetailComponent implements OnInit {
   onEditBusiness() {
     this.router.navigate(['edit'], { relativeTo: this.route })
   }
+
+  onDeleteBusiness() {
+    this.businessService.deleteBusiness(this.id);
+    this.router.navigate(['/businesses'])
+  }
 }

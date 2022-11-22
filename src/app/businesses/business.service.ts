@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core'
 import { LinkListService } from '../link-list/link-list.service';
 import { Link } from '../shared/link.model';
-import { Business } from './business.model'
+import { Business } from './business.model';
+import { Subject } from 'rxjs/Subject';
 
 
 
 @Injectable()
 export class BusinessService {
+  businessesChanged = new Subject<Business[]>();
 
   private businesses: Business[] = [
     new Business('A Test Business',
@@ -32,5 +34,20 @@ export class BusinessService {
 
   addLinksToLinkList(links: Link[]) {
     this.linklistService.addLinks(links);
+  }
+
+  addBusiness(business: Business) {
+    this.businesses.push(business);
+    this.businessesChanged.next(this.businesses.slice());
+  }
+
+  updateBusiness(index: number, newBusiness: Business) {
+    this.businesses[index] = newBusiness;
+    this.businessesChanged.next(this.businesses.slice());
+  }
+
+  deleteBusiness(index: number) {
+    this.businesses.splice(index, 1);
+    this.businessesChanged.next(this.businesses.slice());
   }
 }

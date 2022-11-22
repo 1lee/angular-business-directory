@@ -16,6 +16,7 @@ import { LinkListService } from './link-list/link-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BusinessStartComponent } from './businesses/business-start/business-start.component';
 import { BusinessEditComponent } from './businesses/business-edit/business-edit.component';
+import { BusinessService } from './businesses/business.service';
 
 
 
@@ -39,7 +40,7 @@ import { BusinessEditComponent } from './businesses/business-edit/business-edit.
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [LinkListService],
+  providers: [LinkListService, BusinessService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

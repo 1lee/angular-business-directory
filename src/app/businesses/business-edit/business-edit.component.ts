@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BusinessService } from '../business.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class BusinessEditComponent implements OnInit {
   editMode: boolean = false;
   businessForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private businessService: BusinessService) {
+  constructor(private route: ActivatedRoute, private businessService: BusinessService, private router: Router) {
 
   }
 
@@ -45,24 +45,46 @@ export class BusinessEditComponent implements OnInit {
       if (business['links']) {
         for (let link of business.links) {
           businessLinks.push(new FormGroup({
-            'name': new FormControl(link.name),
-            'url': new FormControl(link.url)
+            'name': new FormControl(link.name, Validators.required),
+            'url': new FormControl(link.url, Validators.required)
           }))
         }
       }
     }
 
     this.businessForm = new FormGroup({
-      'name': new FormControl(businessName),
-      'imagePath': new FormControl(businessImagePath),
-      'description': new FormControl(businessDescription),
+      'name': new FormControl(businessName, Validators.required),
+      'imagePath': new FormControl(businessImagePath, Validators.required),
+      'description': new FormControl(businessDescription, Validators.required),
       'links': businessLinks
     })
-    console.log(`businessForm: `, this.businessForm)
+  }
+
+  onAddLink() {
+    (<FormArray>this.businessForm.get('links')).push(new FormGroup({
+      'name': new FormControl(null, Validators.required),
+      'url': new FormControl(null, Validators.required)
+    }))
+
   }
 
   onSubmit() {
-    console.log(this.businessForm);
+    // const newBusiness = new Business(this.businessForm.value['name'], this.businessForm.value['description'], this.businessForm.value['imagePath'], this.businessForm.value['links'])
+
+    if (this.editMode) {
+      this.businessService.updateBusiness(this.id, this.businessForm.value)
+    } else {
+      this.businessService.addBusiness(this.businessForm.value);
+    }
+    this.onCancel()
+  }
+  onCancel() {
+    this.router.navigate(['../'], { relativeTo: this.route })
+
+  }
+
+  onDeleteLink(index: number) {
+    (<FormArray>this.businessForm.get('links')).clear();
   }
 
 }
